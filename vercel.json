@@ -5,10 +5,10 @@
       "DISABLE_SOURCE_MAPS": "true"
     }
   },
-  "rewrites": {
+  "rewrites":[ {
     "source": "/(.*)",
     "destination": "/"
-  },
+  }],
   "routes": [
     {
       "src": "/(.*)",
