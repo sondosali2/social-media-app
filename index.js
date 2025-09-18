@@ -50,12 +50,13 @@ app.use("/profile",profilerouter)
 app.use("/post",postRoute)
 
 app.use(globalerror)
-app.use((req, res) => {
-  res.status(404).send("<h1>404</h1>");
-});
 app.get("/", (req, res) => {
   res.send("Hello World!");
 })
+app.use((req, res) => {
+  res.status(404).send("<h1>404</h1>");
+});
+
 app.listen(process.env.port, () => {
     console.log(`Example app listening on port ${process.env.port}`)
 })
