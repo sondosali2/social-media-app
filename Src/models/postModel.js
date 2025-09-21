@@ -22,29 +22,30 @@ const postSchema = new mongoose.Schema({
   ],
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
     required: true,
   },
   updatedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
   },
   deletedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
   },
   likes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
     },
   ],
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
     },
   ],
+
   isDeleted: { type: Boolean, default: false },
 }, { timestamps: true ,toJSON:{virtuals:true},toObject:{virtuals:true}});
 postSchema.virtual("comments", {

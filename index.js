@@ -8,8 +8,10 @@ import { globalerror } from './Src/utils/asyncHandler.js'
 import profilerouter from './Src/Modules/profile/profileRoute.js'
 import postRoute from './Src/Modules/post/post.route.js'
 import helmet from 'helmet'
-import cors from 'cors'
 import rateLimit from 'express-rate-limit'
+import { createHandler } from 'graphql-http/lib/use/express'
+import { schema } from './Src/Modules/post/GraphQl/schema.js'
+import playground from 'graphql-playground-middleware-express'
 const app = express()
 connectDB()
 ///rate-limiter
@@ -48,6 +50,19 @@ app.use(express.json())
 app.use("/user",router)
 app.use("/profile",profilerouter)
 app.use("/post",postRoute)
+app.use(
+  '/graphql',
+  createHandler({
+    schema,
+    context: (req) => {
+      const authorization = req.headers.authorization || '';
+      return { authorization };
+    },
+  })
+);
+
+
+app.get('/playground',playground.default({endpoint:"/graphql"}))
 
 app.use(globalerror)
 app.get("/", (req, res) => {
