@@ -69,19 +69,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 })
 app.use((req, res) => {
-  res.status(404).send(`<div style={{
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#1e1e2f",   // dark background
-      color: "#ff4d4d",             // bright red text
-      fontSize: "8rem",
-      fontFamily: "sans-serif"
-    }}>
-      404
-    </div>
-  );`);
+  res.status(404).send("<h1>404</h1>");
 });
 
 app.listen(process.env.port, () => {
